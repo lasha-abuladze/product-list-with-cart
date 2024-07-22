@@ -1,0 +1,22 @@
+
+@media only screen and (min-width: 1216px) {
+
+    body {
+        padding: 88px 0px;
+    }
+
+    .main-section {
+        max-width: 1216px;
+        display: flex;
+        gap: 32px;
+    }
+
+    .product-list {
+        min-width:  800px;
+    }
+
+    .product-img {
+        max-width: 250px;
+    }
+
+}
