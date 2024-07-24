@@ -165,39 +165,7 @@ const addToCart = function(buttons, data) {
                 </div>
             `
 
-            ordersHTML.insertAdjacentHTML(`beforeend`, orderBox);
-
-
-            
-            // increment.addEventListener(`click`, () => {
-            //     data[i].order = data[i].order +1;
-            //     totalOrderNumberHTML.textContent = `${data.reduce((acc, el) => acc + el.order, 0)}`
-            //     orderProductNumberHTML.textContent = `${data[i].order}`
-
-
-
-            // })
-
-            // decrement.addEventListener(`click`, () => {
-
-            //     if(data[i].order > 0) {
-            //         data[i].order = data[i].order - 1;
-            //         totalOrderNumberHTML.textContent = `${data.reduce((acc, el) => acc + el.order, 0)}`
-            //         orderProductNumberHTML.textContent = `${data[i].order}`
-            //     } else if (data[i].order = 0) {
-            //         addToCartHTML.classList.remove(`display-none`);
-            //         addRemoveFromCartHTML.classList.add(`display-none`); 
-            //     }
-
-            //     // if(data[i].order = 0) {
-            //     //     // emptyCartHTML.classList.remove(`display-none`);
-            //     //     // ordersHTML.classList.add(`display-none`);
-
-            //     //     console.log(data[i])
-            //     // }
-
-
-            // })
+            ordersHTML.insertAdjacentHTML(`beforeend`, orderBox); 
 
         })
 
@@ -224,6 +192,11 @@ const addToCart = function(buttons, data) {
             if(data[i].order < 1) {               
             addToCartHTML.classList.remove(`display-none`);
             addRemoveFromCartHTML.classList.add(`display-none`); 
+            
+            const removeFromCart = ordersHTML.querySelector(`.${data[i].category}`)
+
+            removeFromCart.remove();
+
             }
 
 
