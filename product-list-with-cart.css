@@ -170,15 +170,14 @@ aside {
 }
 
 .empty-cart {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-
+    text-align: center ;
     margin-top: 24px;
     padding: 16px;
     box-sizing: border-box;
+}
+
+.orders {
+    margin-top: 8px;
 }
 
 
@@ -188,6 +187,10 @@ aside {
     align-items: center;
     font-size: 14px;
     font-weight: 600;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #F5EEEC;
+    box-sizing: border-box;
 }
 
 h6 {
