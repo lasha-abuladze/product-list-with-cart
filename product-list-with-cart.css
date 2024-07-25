@@ -229,6 +229,74 @@ h6 {
     cursor: pointer;
 }
 
+.order-total-div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 14px;
+}
+
+.order-total-div span {
+    font-size: 14px;
+    font-weight: 400;
+    color: #260F08;
+}
+
+.order-total-price {
+    font-size: 24px;
+    font-weight: 700;
+    color: #260F08;
+}
+
+
+.delivery {
+    width: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+    background-color: #FCF8F6;
+    border-radius: 8px;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    margin-top: 24px;
+}
+
+.delivery span {
+    font-size: 14px;
+    font-weight: 400;
+    color: #260F08;
+}
+
+.carbon-neutral:link,
+.carbon-neutral:visited {
+    font-weight: 600;
+    color: #260F08;
+}
+
+.confirm-order-btn {
+    width: 100%;
+    padding: 16px 24px;
+    box-sizing: border-box;
+    
+    background-color: #C73B0F;
+
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    border-radius: 999px;
+
+    font-size: 16px;
+    font-weight: 600;
+    color: #FFFFFF;
+
+    margin-top: 24px;
+
+}
 
 
 

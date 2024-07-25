@@ -7,10 +7,16 @@
 const productList = document.querySelector(`.product-list`);
 const ordersHTML = document.querySelector(`.orders`);
 const emptyCartHTML = document.querySelector(`.empty-cart`);
-const totalOrderNumberHTML = document.querySelector(`.total-order-number`)
+const totalOrderNumberHTML = document.querySelector(`.total-order-number`);
+const confirmOrderDiv = document.querySelector(`.confirm-order-div`);
+const orderTotalPrice = document.querySelector(`.order-total-price`);
 
 productList.textContent = ``;
 ordersHTML.textContent = ``;
+
+
+
+const arr = [];
 
 
 
@@ -88,6 +94,7 @@ const displayProduct = function(data) {
         productList.insertAdjacentHTML(`beforeend`, productBox)
 
         el.order = 0;
+        el.totalPrice = 0;
 
     });
 
@@ -114,18 +121,16 @@ const addToCart = function(buttons, data) {
         addToCartHTML.addEventListener(`click`, () => {
 
 
-            // const increment = addRemoveFromCartHTML.querySelector(`.increment`)
-            // const decrement = addRemoveFromCartHTML.querySelector(`.decrement`)
-            // const orderProductNumberHTML = addRemoveFromCartHTML.querySelector(`.ordered-product-number`)
-
-
-
             data[i].order = data[i].order +1;
+            data[i].totalPrice = data[i].price * data[i].order
+
             orderProductNumberHTML.textContent = `${data[i].order}`
+            orderTotalPrice.textContent = `$${data.reduce((acc, el) => acc + el.totalPrice, 0)}`
 
             if(data.some(el => el.order > 0)) {
                 emptyCartHTML.classList.add(`display-none`);
-                ordersHTML.classList.remove(`display-none`);              
+                ordersHTML.classList.remove(`display-none`);
+                confirmOrderDiv.classList.remove(`display-none`)              
 
             }
 
@@ -179,15 +184,17 @@ const addToCart = function(buttons, data) {
                 removeFromCart.remove();
                 
                 data[i].order = 0;
+                data[i].totalPrice = 0;
 
                 addToCartHTML.classList.remove(`display-none`);
                 addRemoveFromCartHTML.classList.add(`display-none`); 
                 totalOrderNumberHTML.textContent = `${data.reduce((acc, el) => acc + el.order, 0)}`
-
+                orderTotalPrice.textContent = `$${data.reduce((acc, el) => acc + el.totalPrice, 0)}`
                 
                 if(Number(totalOrderNumberHTML.textContent) === 0) {
                     emptyCartHTML.classList.remove(`display-none`);
                     ordersHTML.classList.add(`display-none`); 
+                    confirmOrderDiv.classList.add(`display-none`)
                 }
             })
 
@@ -203,7 +210,7 @@ const addToCart = function(buttons, data) {
 
             decrement.addEventListener(`click`, () => {
                 productTotalNumber.textContent = `${data[i].order}x`
-                productTotalPrice.textContent =  `$${data[i].price * data[i].order}`  
+                productTotalPrice.textContent =  `$${data[i].price * data[i].order}`
             })
 
 
@@ -213,8 +220,11 @@ const addToCart = function(buttons, data) {
 
         increment.addEventListener(`click`, () => {
             data[i].order = data[i].order +1;
+            data[i].totalPrice = data[i].price * data[i].order;
+
             totalOrderNumberHTML.textContent = `${data.reduce((acc, el) => acc + el.order, 0)}`
-            orderProductNumberHTML.textContent = `${data[i].order}`
+            orderProductNumberHTML.textContent = `${data[i].order}`;
+            orderTotalPrice.textContent = `$${data.reduce((acc, el) => acc + el.totalPrice, 0)}`;
 
         })
 
@@ -222,8 +232,11 @@ const addToCart = function(buttons, data) {
 
             if(data[i].order >= 1) {
                 data[i].order = data[i].order - 1;
+                data[i].totalPrice = data[i].price * data[i].order;
+
                 totalOrderNumberHTML.textContent = `${data.reduce((acc, el) => acc + el.order, 0)}`
-                orderProductNumberHTML.textContent = `${data[i].order}`
+                orderProductNumberHTML.textContent = `${data[i].order}`;
+                orderTotalPrice.textContent = `$${data.reduce((acc, el) => acc + el.totalPrice, 0)}`;
             }
 
 
@@ -234,6 +247,12 @@ const addToCart = function(buttons, data) {
                 const removeFromCart = ordersHTML.querySelector(`.${data[i].category}`)                
                 removeFromCart.remove();
 
+            }
+
+            if(Number(totalOrderNumberHTML.textContent) === 0) {
+                emptyCartHTML.classList.remove(`display-none`);
+                ordersHTML.classList.add(`display-none`); 
+                confirmOrderDiv.classList.add(`display-none`)
             }
 
         })
