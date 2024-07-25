@@ -16,7 +16,7 @@ body {
     background-color: rgb(0, 0, 0, 0.4);
     position: absolute;
     left: 0;
-    top: 0;
+    bottom: 0;
     z-index: 1;
 }
 
@@ -29,9 +29,8 @@ body {
     height: 90vh;
     margin: auto;
     position: absolute;
+    bottom: 0;
     left: 0;
-    top: 100vh;
-    transform: translatey(-100%);
     z-index: 2;
 
     padding: 40px 24px 24px 24px;
@@ -345,7 +344,7 @@ h6 {
     color: #260F08;
 }
 
-.order-total-price {
+.order-total-price, .order-total-price-final {
     font-size: 24px;
     font-weight: 700;
     color: #260F08;

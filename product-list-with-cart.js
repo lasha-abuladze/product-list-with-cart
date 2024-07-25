@@ -10,13 +10,22 @@ const emptyCartHTML = document.querySelector(`.empty-cart`);
 const totalOrderNumberHTML = document.querySelector(`.total-order-number`);
 const confirmOrderDiv = document.querySelector(`.confirm-order-div`);
 const orderTotalPrice = document.querySelector(`.order-total-price`);
+const confirmOrder = document.querySelector(`.confirm-order-btn`);
+
+const darkBackground = document.querySelector(`.dark-background`);
+const confirmedOrder = document.querySelector(`.order-confirmed-div`);
+const finalOrderList = document.querySelector(`.final-order-list`);
+const startNewOrder = document.querySelector(`.start-new-order`);
+const orderFinalTotalPrice = document.querySelector(`.order-total-price-final`)
+
 
 productList.textContent = ``;
 ordersHTML.textContent = ``;
+finalOrderList.textContent = ``;
 
 
 
-const arr = [];
+
 
 
 
@@ -120,6 +129,7 @@ const addToCart = function(buttons, data) {
 
         addToCartHTML.addEventListener(`click`, () => {
 
+            finalOrderList.textContent= ``;
 
             data[i].order = data[i].order +1;
             data[i].totalPrice = data[i].price * data[i].order
@@ -257,10 +267,81 @@ const addToCart = function(buttons, data) {
 
         })
 
+    })
 
 
+    confirmOrder.addEventListener(`click`, () => {
+        darkBackground.classList.remove(`display-none`)
+        confirmedOrder.classList.remove(`display-none`)
+
+        data.forEach(el => {
+            if(el.order > 0) {
+                const finalOrderedProduct = `
+                    <div class="final-order-product-box">
+
+                        <img src="${el.image.thumbnail}" alt="${el.category}">
+
+                        <div class="final-order-product-details">
+                            <h6>
+                                ${el.name}
+                            </h6>
+    
+                            <span class="single-product-order-number">
+                               ${el.order}x
+                            </span>
+    
+                            <span class="single-product-price">
+                                @ $${el.price}
+                            </span>
+                        </div>
+                            
+                        <span class="sinlge-product-total-ptice">
+                            $${el.price * el.order}
+                        </span>
+
+                    </div> 
+
+                    
+                `
+
+                finalOrderList.insertAdjacentHTML(`beforeend`, finalOrderedProduct)
+            }
+        })
+
+        orderFinalTotalPrice.textContent = `${orderTotalPrice.textContent}`
+    })
+
+    startNewOrder.addEventListener(`click`, () => {
+
+        data.forEach((el,i)=> {
+            el.order = 0;
+            el.totalPrice = 0;
+        })
+
+        ordersHTML.textContent = ``;
+
+        darkBackground.classList.add(`display-none`);
+        confirmedOrder.classList.add(`display-none`);
+
+        
+        emptyCartHTML.classList.remove(`display-none`);
+        ordersHTML.classList.add(`display-none`);
+        confirmOrderDiv.classList.add(`display-none`);
+        totalOrderNumberHTML.textContent = `${data.reduce((acc, el) => acc + el.order, 0)}`;
+
+        buttons.forEach((el,i) => {
+            const addToCartHTML = el.querySelector(`.add-to-cart`);
+            const addRemoveFromCartHTML = el.querySelector(`.add-remove-from-cart`);
+        
+            addToCartHTML.classList.remove(`display-none`)
+            addRemoveFromCartHTML.classList.add(`display-none`)
+        })
 
     })
+
+
+
+
 }
 
 
