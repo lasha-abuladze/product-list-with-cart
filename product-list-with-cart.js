@@ -144,7 +144,7 @@ const addToCart = function(buttons, data) {
                             ${data[i].name}
                         </h6>
 
-                        <span class="single-product-order-number">
+                        <span class="single-product-order-number orderNumber-${data[i].category}">
                             ${data[i].order}x
                         </span>
 
@@ -152,7 +152,7 @@ const addToCart = function(buttons, data) {
                             @ $${data[i].price}
                         </span>
 
-                        <span class="sinlge-product-total-ptice">
+                        <span class="sinlge-product-total-ptice  productTotalPrice-${data[i].category}">
                             $${data[i].price * data[i].order}
                         </span>
 
@@ -191,8 +191,23 @@ const addToCart = function(buttons, data) {
                 }
             })
 
-        })
 
+            const productTotalNumber = document.querySelector(`.orderNumber-${data[i].category}`);
+            const productTotalPrice = document.querySelector(`.productTotalPrice-${data[i].category}`);
+
+            increment.addEventListener(`click`, () => {
+                productTotalNumber.textContent = `${data[i].order}x`;
+                productTotalPrice.textContent =  `$${data[i].price * data[i].order}` 
+
+            })
+
+            decrement.addEventListener(`click`, () => {
+                productTotalNumber.textContent = `${data[i].order}x`
+                productTotalPrice.textContent =  `$${data[i].price * data[i].order}`  
+            })
+
+
+        })
 
 
 
@@ -200,9 +215,6 @@ const addToCart = function(buttons, data) {
             data[i].order = data[i].order +1;
             totalOrderNumberHTML.textContent = `${data.reduce((acc, el) => acc + el.order, 0)}`
             orderProductNumberHTML.textContent = `${data[i].order}`
-
-
-
 
         })
 
