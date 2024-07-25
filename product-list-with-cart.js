@@ -158,7 +158,7 @@ const addToCart = function(buttons, data) {
 
                     </div>
 
-                    <button class="remove-product">
+                    <button class="remove-product ${data[i].category}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10"><path fill="#CAAFA7" d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"/></svg>
                     </button>
 
@@ -167,7 +167,32 @@ const addToCart = function(buttons, data) {
 
             ordersHTML.insertAdjacentHTML(`beforeend`, orderBox); 
 
+
+
+
+
+
+            const removeBtn = ordersHTML.querySelector(`.${data[i].category}`);
+
+            removeBtn.addEventListener(`click`, () => {
+                const removeFromCart = ordersHTML.querySelector(`.${data[i].category}`)
+                removeFromCart.remove();
+                
+                data[i].order = 0;
+
+                addToCartHTML.classList.remove(`display-none`);
+                addRemoveFromCartHTML.classList.add(`display-none`); 
+                totalOrderNumberHTML.textContent = `${data.reduce((acc, el) => acc + el.order, 0)}`
+
+                
+                if(Number(totalOrderNumberHTML.textContent) === 0) {
+                    emptyCartHTML.classList.remove(`display-none`);
+                    ordersHTML.classList.add(`display-none`); 
+                }
+            })
+
         })
+
 
 
 
@@ -175,6 +200,7 @@ const addToCart = function(buttons, data) {
             data[i].order = data[i].order +1;
             totalOrderNumberHTML.textContent = `${data.reduce((acc, el) => acc + el.order, 0)}`
             orderProductNumberHTML.textContent = `${data[i].order}`
+
 
 
 
@@ -190,17 +216,18 @@ const addToCart = function(buttons, data) {
 
 
             if(data[i].order < 1) {               
-            addToCartHTML.classList.remove(`display-none`);
-            addRemoveFromCartHTML.classList.add(`display-none`); 
+                addToCartHTML.classList.remove(`display-none`);
+                addRemoveFromCartHTML.classList.add(`display-none`); 
             
-            const removeFromCart = ordersHTML.querySelector(`.${data[i].category}`)
-
-            removeFromCart.remove();
+                const removeFromCart = ordersHTML.querySelector(`.${data[i].category}`)                
+                removeFromCart.remove();
 
             }
 
-
         })
+
+
+
 
     })
 }
