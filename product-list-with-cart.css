@@ -14,7 +14,7 @@ body {
     width: 100%;
     height: 100vh;
     background-color: rgb(0, 0, 0, 0.4);
-    position: absolute;
+    position: fixed;
     left: 0;
     bottom: 0;
     z-index: 1;
@@ -28,7 +28,7 @@ body {
     width: 100%;
     height: 90vh;
     margin: auto;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     z-index: 2;
@@ -402,4 +402,91 @@ h6 {
 
 
 
+
+
+
+/* 
+        TABLET
+*/
+
+
+
+@media only screen and (min-width: 1216px) {
+
+    body {
+        padding: 88px 0px;
+    }
+
+    .main-section {
+        max-width: 1216px;
+        display: flex;
+        gap: 32px;
+    }
+
+    .product-list {
+        min-width:  800px;
+    }
+
+    .product-img {
+        max-width: 250px;
+    }
+
+    .order-confirmed-div {
+   
+    
+        max-width: 592px;
+        height: fit-content;
+        position: absolute;
+        top: 300px;
+        /* bottom: 0; */
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 12px;
+    }
+
+}
+
+
+
+
+
+/* 
+    DESKTOP
+*/
+
+
+@media only screen and (min-width: 1216px) {
+
+    body {
+        padding: 88px 0px;
+    }
+
+    .main-section {
+        max-width: 1216px;
+        display: flex;
+        gap: 32px;
+    }
+
+    .product-list {
+        min-width:  800px;
+    }
+
+    .product-img {
+        max-width: 250px;
+    }
+
+    .order-confirmed-div {
+   
+    
+        max-width: 592px;
+        height: fit-content;
+        position: absolute;
+        top: 300px;
+        /* bottom: 0; */
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 12px;
+    }
+
+}
 

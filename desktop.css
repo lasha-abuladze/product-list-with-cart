@@ -19,4 +19,17 @@
         max-width: 250px;
     }
 
+    .order-confirmed-div {
+   
+    
+        max-width: 592px;
+        height: fit-content;
+        position: absolute;
+        top: 300px;
+        /* bottom: 0; */
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 12px;
+    }
+
 }
