@@ -104,6 +104,7 @@ const displayProduct = function(data) {
 
         el.order = 0;
         el.totalPrice = 0;
+        el.forClass = `${el.category[0] + el.name[0]}`;
 
     });
 
@@ -131,7 +132,7 @@ const addToCart = function(buttons, data) {
 
             finalOrderList.textContent= ``;
 
-            data[i].order = data[i].order +1;
+            data[i].order = data[i].order + 1;
             data[i].totalPrice = data[i].price * data[i].order
 
             orderProductNumberHTML.textContent = `${data[i].order}`
@@ -151,7 +152,7 @@ const addToCart = function(buttons, data) {
             addRemoveFromCartHTML.classList.remove(`display-none`); 
             
             const orderBox = `
-                <div class="order-box ${data[i].category}">
+                <div class="order-box ${data[i].forClass}">
 
                     <div class="order-details">
 
@@ -159,7 +160,7 @@ const addToCart = function(buttons, data) {
                             ${data[i].name}
                         </h6>
 
-                        <span class="single-product-order-number orderNumber-${data[i].category}">
+                        <span class="single-product-order-number orderNumber-${data[i].forClass}">
                             ${data[i].order}x
                         </span>
 
@@ -167,13 +168,13 @@ const addToCart = function(buttons, data) {
                             @ $${data[i].price}
                         </span>
 
-                        <span class="sinlge-product-total-ptice  productTotalPrice-${data[i].category}">
+                        <span class="sinlge-product-total-ptice  productTotalPrice-${data[i].forClass}">
                             $${data[i].price * data[i].order}
                         </span>
 
                     </div>
 
-                    <button class="remove-product ${data[i].category}">
+                    <button class="remove-product ${data[i].forClass}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10"><path fill="#CAAFA7" d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"/></svg>
                     </button>
 
@@ -187,10 +188,10 @@ const addToCart = function(buttons, data) {
 
 
 
-            const removeBtn = ordersHTML.querySelector(`.${data[i].category}`);
+            const removeBtn = ordersHTML.querySelector(`.${data[i].forClass}`);
 
             removeBtn.addEventListener(`click`, () => {
-                const removeFromCart = ordersHTML.querySelector(`.${data[i].category}`)
+                const removeFromCart = ordersHTML.querySelector(`.${data[i].forClass}`)
                 removeFromCart.remove();
                 
                 data[i].order = 0;
@@ -209,8 +210,8 @@ const addToCart = function(buttons, data) {
             })
 
 
-            const productTotalNumber = document.querySelector(`.orderNumber-${data[i].category}`);
-            const productTotalPrice = document.querySelector(`.productTotalPrice-${data[i].category}`);
+            const productTotalNumber = document.querySelector(`.orderNumber-${data[i].forClass}`);
+            const productTotalPrice = document.querySelector(`.productTotalPrice-${data[i].forClass}`);
 
             increment.addEventListener(`click`, () => {
                 productTotalNumber.textContent = `${data[i].order}x`;
@@ -254,7 +255,7 @@ const addToCart = function(buttons, data) {
                 addToCartHTML.classList.remove(`display-none`);
                 addRemoveFromCartHTML.classList.add(`display-none`); 
             
-                const removeFromCart = ordersHTML.querySelector(`.${data[i].category}`)                
+                const removeFromCart = ordersHTML.querySelector(`.${data[i].forClass}`)                
                 removeFromCart.remove();
 
             }
